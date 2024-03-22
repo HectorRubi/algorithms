@@ -7,20 +7,10 @@ class Order:
 class OrdersList:
   def __init__(self):
     self.head = None
+    self.last = None
 
   def isEmpty(self):
     return self.head == None
-
-  def searchLast(self):
-    if self.isEmpty():
-      return None
-
-    last = self.head
-    while last.next != None:
-      last = last.next
-    
-    return last
-    
 
   def addOrder(self, value):
     # Create order
@@ -28,11 +18,11 @@ class OrdersList:
 
     if self.isEmpty():
       self.head = order
+      self.last = order
     else:
-      # Search last order
-      last = self.searchLast()
       # New last order
-      last.next = order
+      self.last.next = order
+      self.last = order
 
   def print(self):
     order = self.head
