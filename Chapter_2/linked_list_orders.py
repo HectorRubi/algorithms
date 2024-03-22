@@ -24,6 +24,17 @@ class OrdersList:
       self.last.next = order
       self.last = order
 
+  def pullOrder(self):
+    if self.isEmpty():
+      return
+    
+    # Remove head changing head to the next order
+    self.head = self.head.next
+
+    # All elements has been removed
+    if self.head == None:
+      self.last = None
+
   def print(self):
     order = self.head
     while order != None:
@@ -36,10 +47,25 @@ def main():
   orderList = OrdersList()
 
   # Server add orders to the back
+  print('Adding orders...')
   orderList.addOrder('Burger')
   orderList.addOrder('Fries')
   orderList.addOrder('Pay')
+  orderList.print()
 
+  # Chef pull orders off the front
+  print('Pulling orders...')
+  orderList.pullOrder()
+  orderList.print()
+
+  # Server add orders to the back
+  print('Adding orders...')
+  orderList.addOrder('Orange Juice')
+  orderList.print()
+
+  # Chef pull orders off the front
+  print('Pulling orders...')
+  orderList.pullOrder()
   orderList.print()
 
 if __name__ == "__main__":
