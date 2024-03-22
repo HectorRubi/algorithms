@@ -8,12 +8,31 @@ class OrdersList:
   def __init__(self):
     self.head = None
 
+  def isEmpty(self):
+    return self.head == None
+
+  def searchLast(self):
+    if self.isEmpty():
+      return None
+
+    last = self.head
+    while last.next != None:
+      last = last.next
+    
+    return last
+    
+
   def addOrder(self, value):
+    # Create order
     order = Order(value, None)
-    if self.head == None:
+
+    if self.isEmpty():
       self.head = order
     else:
-      self.head.next = order
+      # Search last order
+      last = self.searchLast()
+      # New last order
+      last.next = order
 
   def print(self):
     order = self.head
@@ -29,6 +48,7 @@ def main():
   # Server add orders to the back
   orderList.addOrder('Burger')
   orderList.addOrder('Fries')
+  orderList.addOrder('Pay')
 
   orderList.print()
 
