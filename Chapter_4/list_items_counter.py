@@ -1,7 +1,7 @@
 class Node:
   def __init__(self, value, next):
-    self.value = value
-    self.next = next
+    self.value: int = value
+    self.next: Node = next
 
 class List:
   def __init__(self):
@@ -34,17 +34,27 @@ def count(nodo):
     return 0
   else:
     return 1 + count(nodo.next)
+  
+def findMax(nodo: Node, max: int):
+  if nodo == None:
+    return max
+  else:
+    if (nodo.value > max):
+      return findMax(nodo.next, nodo.value)
+    else:
+      return findMax(nodo.next, max)
 
 
 def main():
   myList = List()
-  myList.add("first")
-  myList.add("second")
-  myList.add("third")
-  myList.add("last")
+  myList.add(1)
+  myList.add(5)
+  myList.add(3)
+  myList.add(7)
   myList.print()
   
   print(count(myList.head))
+  print(findMax(myList.head, myList.head.value))
 
 if __name__ == '__main__':
   main()
