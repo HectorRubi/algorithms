@@ -14,8 +14,6 @@ def search_seller(graph, head):
   # Add an array to save searched nodes
   searched = []
 
-  seller = None
-
   # Loop queue while is not empty
   while search_queue:
     # Get first element from the queue
@@ -27,14 +25,13 @@ def search_seller(graph, head):
     # If it's what we are looking for
     if person_is_seller(person):
       # Done
-      seller = person
-      break
+      return person
     else:
       # Add all neighbors at the end of the queue
       search_queue += graph[person]
       searched.append(person)
 
-  return seller
+  return None
 
 
 def main():
