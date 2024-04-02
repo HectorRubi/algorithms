@@ -11,12 +11,18 @@ def search_seller(graph, head):
   # Add all the first grade neighbors
   search_queue += graph[head]
   
+  # Add an array to save searched nodes
+  searched = []
+
   seller = None
 
   # Loop queue while is not empty
   while search_queue:
     # Get first element from the queue
     person = search_queue.popleft()
+    
+    if person in searched:
+      continue
 
     # If it's what we are looking for
     if person_is_seller(person):
@@ -26,6 +32,7 @@ def search_seller(graph, head):
     else:
       # Add all neighbors at the end of the queue
       search_queue += graph[person]
+      searched.append(person)
 
   return seller
 
